@@ -388,7 +388,7 @@ declare module Selectize {
         /**
          * Removes all options from the control.
          */
-        clearOptions(): void;
+        clearOptions(silent?: boolean): void;
 
         /**
          * Retrieves the jQuery element for the option identified by the given value.
@@ -595,11 +595,14 @@ declare module Selectize {
     }
 }
 
-interface JQuery {
-    selectize(options?: Selectize.IOptions<any, any>): JQuery;
+declare global {
+    interface JQuery {
+        selectize(options?: Selectize.IOptions<any, any>): JQuery;
+    }
+
+    interface HTMLElement {
+        selectize: Selectize.IApi<any, any>;
+    }
 }
 
-interface HTMLElement {
-    selectize: Selectize.IApi<any, any>;
-}
-
+export = Selectize;
